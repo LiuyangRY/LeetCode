@@ -1,4 +1,5 @@
 ﻿using System;
+using LeetCode.Solutions.ArrayProblems;
 
 namespace Solutions
 {
@@ -6,7 +7,11 @@ namespace Solutions
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            int[] nums1 = new int[] { 1, 3 };
+            int[] nums2 = new int[] { 2 };
+            FindMiddleNumberInTowOrderedArraysSoultion test = new FindMiddleNumberInTowOrderedArraysSoultion();
+            var result = test.FindMedianSortedArrays(nums1, nums2);
+            System.Console.WriteLine($"结果为：{result}");
         }
     }
 }
