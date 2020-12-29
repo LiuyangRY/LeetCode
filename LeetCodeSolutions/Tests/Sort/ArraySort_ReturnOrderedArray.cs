@@ -1,6 +1,6 @@
-using System;
 using Xunit;
 using LeetCodeSolutions.Common.Sort;
+using LeetCodeSolutions.Common.Extensions;
 
 namespace LeetCodeSolutions.Tests.Sort
 {
@@ -16,9 +16,10 @@ namespace LeetCodeSolutions.Tests.Sort
         {
             ArraySort.QuickSort(array, 0, array.Length - 1);
 
-            int[] excepted = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 8};
+            bool actual = array.JudgeOrdered(true);
+            bool excepted = true;
 
-            Assert.Equal(array, excepted);
+            Assert.Equal(actual, excepted);
         }
 
         /// <summary>
@@ -31,9 +32,10 @@ namespace LeetCodeSolutions.Tests.Sort
         {
             ArraySort.QuickSortWithoutRecursion(array, 0, array.Length - 1);
 
-            int[] excepted = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 8};
+            bool actual = array.JudgeOrdered(true);
+            bool excepted = true;
 
-            Assert.Equal(array, excepted);
+            Assert.Equal(actual, excepted);
         }
     }
 }

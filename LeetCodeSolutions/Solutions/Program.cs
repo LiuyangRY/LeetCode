@@ -15,7 +15,7 @@ namespace LeetCodeSolutions
             // System.Console.WriteLine($"结果为：{result}");
             Console.Write("排序前数组：");
             nums1.Print();
-            ArraySort.QuickSortWithoutRecursion(nums1, 0, nums1.Length - 1);
+            ArraySort.BubbleSort(nums1);
             // ArraySort.QuickSort(nums1, 0, nums1.Length - 1);
             Console.Write("排序后数组：");
             nums1.Print();

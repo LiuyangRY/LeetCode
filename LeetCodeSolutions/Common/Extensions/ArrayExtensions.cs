@@ -34,5 +34,32 @@ namespace LeetCodeSolutions.Common.Extensions
             System.Console.Write("]");
             System.Console.WriteLine();
         }
+
+        /// <summary>
+        /// 判断数组是否有序
+        /// </summary>
+        /// <param name="array">需要判断的数组</param>
+        /// <param name="isAsc">是否升序（默认为升序）</param>
+        public static bool JudgeOrdered(this int[] array, bool isAsc = true)
+        {
+            // 完整性检查
+            if(array == null)
+            {
+                return false;
+            }
+            // 假设数组已经是有序的
+            bool isSorted = true;
+            for(int begin = 1; begin < array.Length; begin++)
+            {
+                bool compareResult = isAsc ? array[begin - 1] > array[begin] : array[begin - 1] < array[begin];
+                if(compareResult)
+                {
+                    // 后一个元素小于前一个元素，数组还不是有序的
+                    isSorted = false;
+                    break;
+                }
+            }
+            return isSorted;
+        }
     }
 }
