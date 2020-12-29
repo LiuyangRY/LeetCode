@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using LeetCode.Solutions.Common.Extensions.ArrayExtensions;
+using LeetCode.Solutions.Common.Extensions;
 
 namespace LeetCode.Solutions.Common.Sort
 {

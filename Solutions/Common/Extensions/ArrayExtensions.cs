@@ -1,4 +1,4 @@
-namespace LeetCode.Solutions.Common.Extensions.ArrayExtensions
+namespace LeetCode.Solutions.Common.Extensions
 {
     /// <summary>
     /// 数组扩展方法
@@ -17,6 +17,22 @@ namespace LeetCode.Solutions.Common.Extensions.ArrayExtensions
             array[firstPosition] = array[secondePosition];
             array[secondePosition] = temp;
             return array;
+        }
+
+
+        /// <summary>
+        /// 打印数组
+        /// </summary>
+        /// <param name="array">数组</param>
+        public static void Print(this int[] array)
+        {
+            System.Console.Write("[");
+            foreach (var num in array)
+            {
+                System.Console.Write($" {num} ");
+            }
+            System.Console.Write("]");
+            System.Console.WriteLine();
         }
     }
 }
