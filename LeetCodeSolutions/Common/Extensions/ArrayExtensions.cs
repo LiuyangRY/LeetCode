@@ -1,4 +1,4 @@
-namespace LeetCode.Solutions.Common.Extensions
+namespace LeetCodeSolutions.Common.Extensions
 {
     /// <summary>
     /// 数组扩展方法

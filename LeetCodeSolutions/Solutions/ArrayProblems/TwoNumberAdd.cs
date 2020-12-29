@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LeetCode.Solutions.ArrayProblems
+namespace LeetCodeSolutions.ArrayProblems
 {
     public class TwoNumberAddSoultion {
         public int[] TwoSum(int[] nums, int target) {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LeetCode.Solutions.ArrayProblems
+namespace LeetCodeSolutions.ArrayProblems
 {
     public class FindMiddleNumberInTowOrderedArraysSoultion
     {

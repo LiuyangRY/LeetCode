@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using LeetCode.Solutions.Common.Extensions;
+using LeetCodeSolutions.Common.Extensions;
 
-namespace LeetCode.Solutions.Common.Sort
+namespace LeetCodeSolutions.Common.Sort
 {
     public class ArraySort 
     {

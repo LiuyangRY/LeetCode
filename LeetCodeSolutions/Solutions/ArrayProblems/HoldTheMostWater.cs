@@ -1,4 +1,4 @@
-namespace LeetCode.Solutions.ArrayProblems
+namespace LeetCodeSolutions.ArrayProblems
 {
     public class HoldTheMostWaterSolution
     {
