@@ -1,86 +1,108 @@
-using System;
+using System.Collections.Generic;
+using LeetCode.Solutions.Common.Extensions.ArrayExtensions;
 
 namespace LeetCode.Solutions.Common.Sort
 {
-    /// <summary>
-    /// 数组排序
-    /// </summary>
-    public class ArraySort
+    public class ArraySort 
     {
-
-        public static void QuickSort(int[] arrs, int startIndex, int endIndex)
-        {
-            if (startIndex >= endIndex)
-            {
-                return;
-            }
-            int first = startIndex, last = endIndex;
-            //此时a[startIndex]被保存到key，所以元素a[startIndex]可以当作是一个空位，用于保存数据，之后每赋值一次，也会有一个位置空出来，
-            //直到last ==first，此时a[last]==a[first]=key
-            int key = arrs[startIndex];
-            while (first < last)
-            {
-                while (first < last && arrs[last] >= key)
-                {
-                    last--;
-                }
-                arrs[first] = arrs[last];
-                while (first < last && arrs[first] <= key)
-                {
-                    first++;
-                }
-                arrs[last] = arrs[first];
-            }
-            arrs[first] = key;
-            //递归排序数组左边的元素
-            QuickSort(arrs, startIndex, first - 1);
-            //递归排序右边的元素
-            QuickSort(arrs, first + 1, endIndex);
-        }
+        #region 冒泡排序
         
-        /// <summary>
-        /// 将数组指定区间进行快速排序并返回基准索引
-        /// </summary>
-        /// <param name="arrs">排序数组</param>
-        /// <param name="left">排序左边界</param>
-        /// <param name="right">排序右边界</param>
-        /// <returns>基准索引</returns>
-        public static int Partition(int[] arrs, int left, int right)
-        {
-            // 完整性检查
-            if(arrs == null || arrs.Length < 2)
-            {
-                return 0;
-            }
-            // 初始化基数及基数索引值
-            int baseIndex = new Random().Next(left, right);
-            int baseNum = arrs[baseIndex];
-            int leftPointer = left, rightPointer = right;
+        #endregion
 
-            // 将小于基数的数放到左边，将大于基数的值放到右边
-            while(leftPointer < rightPointer)
+        #region 快速排序
+            /// <summary>
+            /// 双路指针快速排序（非递归方式）
+            /// </summary>
+            /// <param name="array">排序数组</param>
+            /// <param name="startIndex">排序开始索引</param>
+            /// <param name="endIndex">排序结束索引</param>
+            public static void QuickSortWithoutRecursion(int[] array, int startIndex, int endIndex)
             {
-                while(arrs[rightPointer] > baseNum && leftPointer < rightPointer)
+                // 完整性检查
+                if(array == null || array.Length < 2)
                 {
-                    rightPointer--;
+                    return;
                 }
-                while(arrs[leftPointer] <= baseNum && leftPointer < rightPointer)
+                if(startIndex >= endIndex)
                 {
-                    leftPointer++;
+                    return;
                 }
-                if(leftPointer < rightPointer)
+                Stack<KeyValuePair<int, int>> positionStack = new Stack<KeyValuePair<int, int>>();
+                positionStack.Push(new KeyValuePair<int, int>(startIndex, endIndex));
+                while (positionStack.Count > 0)
                 {
-                    int temp = arrs[leftPointer];
-                    arrs[leftPointer] = arrs[rightPointer];
-                    arrs[rightPointer] = temp;
+                    var position = positionStack.Pop();
+                    int index = Partition(array, position.Key, position.Value);
+                    if(index != position.Key)
+                    {
+                        positionStack.Push(new KeyValuePair<int, int>(position.Key, index - 1));
+                        positionStack.Push(new KeyValuePair<int, int>(index + 1, position.Value));
+                    }
                 }
             }
-            // 将基数放到指针重合处
-            arrs[baseIndex] = arrs[leftPointer];
-            arrs[leftPointer] = baseNum;
-            
-            // 返回基准位置索引
-            return leftPointer;
-        }
+
+            /// <summary>
+            /// 双路指针快速排序（递归方式）
+            /// </summary>
+            /// <param name="array">排序数组</param>
+            /// <param name="startIndex">排序开始索引</param>
+            /// <param name="endIndex">排序结束索引</param>
+            public static void QuickSort(int[] array, int startIndex, int endIndex)
+            {
+                // 完整性检查
+                if(array == null || array.Length < 2)
+                {
+                    return;
+                }
+                if(startIndex >= endIndex)
+                {
+                    return;
+                }
+                int index = Partition(array, startIndex, endIndex);
+                QuickSort(array, startIndex, index - 1);
+                QuickSort(array, index + 1, endIndex);
+            }
+
+            /// <summary>
+            /// 根据基准值将数组分为两部分（左边都小于基准值，右边都大于基准值）
+            /// </summary>
+            /// <param name="array">排序数组</param>
+            /// <param name="startIndex">排序开始索引</param>
+            /// <param name="endIndex">排序结束索引</param>
+            /// <returns>基准索引值</returns>
+            private static int Partition(int[] array, int startIndex, int endIndex)
+            {
+                // 完整性检查
+                if(startIndex >= endIndex)
+                {
+                    return startIndex;
+                }
+                // 初始化基准索引、基准值、左指针与右指针
+                int baseIndex = (startIndex + endIndex) >> 1;
+                int baseNum = array[baseIndex];
+                // 将基准值保存在数组首部
+                array.Swap(baseIndex, startIndex);
+                int leftPointer = startIndex + 1, rightPointer = endIndex;
+                // 开始交换排序
+                while(leftPointer < rightPointer)
+                {
+                    while(leftPointer < rightPointer && array[rightPointer] >= baseNum)
+                    {
+                        rightPointer--;
+                    }
+                    while(leftPointer < rightPointer && array[leftPointer] < baseNum)
+                    {
+                        leftPointer++;
+                    }
+                    if(leftPointer < rightPointer)
+                    {
+                        array.Swap(leftPointer, rightPointer);
+                    }
+                }
+                // 将基准数据放到合适的位置
+                array.Swap(startIndex, leftPointer);
+                return leftPointer;
+            }
+        #endregion
     }
 }
