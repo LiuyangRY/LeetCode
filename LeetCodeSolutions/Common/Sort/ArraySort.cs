@@ -19,22 +19,19 @@ namespace LeetCodeSolutions.Common.Sort
                 }
                 for(int end = array.Length - 1; end > 0; end--)
                 {
-                    // 假设数组已经是有序的
-                    bool isSorted = true;
+                    // 假设数组从 sortedIndex 开始就是有序的
+                    int sortedIndex = 0;
                     for(int begin = 1; begin <= end; begin++)
                     {
                         if(array[begin - 1] > array[begin])
                         {
                             array.Swap(begin - 1, begin);
-                            // 如果发生交换，说明数组还不是有序的
-                            isSorted = false;
+                            // 如果发生交换，说明数组还不是有序的，更新不需要排序的位置
+                            sortedIndex = begin;
                         }
                     }
-                    if(isSorted)
-                    {
-                        // 如果经过一轮比较，未发生交换，说明数组已经是有序的了
-                        break;
-                    }
+                    // 更新排序结束位置
+                    end = sortedIndex;
                 }
             }
         #endregion
