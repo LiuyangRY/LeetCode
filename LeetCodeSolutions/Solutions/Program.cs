@@ -1,6 +1,4 @@
-﻿using System;
-using LeetCodeSolutions.ArrayProblems;
-using LeetCodeSolutions.Common.Statistic;
+﻿using LeetCodeSolutions.Solutions.ArrayProblems;
 
 namespace LeetCodeSolutions
 {
@@ -8,10 +6,20 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            int[] testArray = new int[]{1,8,6,2,5,4,8,3,7};
-            HoldTheMostWaterSolution test = new HoldTheMostWaterSolution();
-            int result = test.MaxArea(testArray);
-            System.Console.WriteLine($"容器最大面积为：{result}");
+            int[] testArray = new int[]{-1,0,1,2,-1,-4};
+            ThreeNumbersSumSolution test = new ThreeNumbersSumSolution();
+            var result = test.ThreeSum(testArray);
+            System.Console.WriteLine("[");
+            foreach (var item in result)
+            {   
+                System.Console.Write("  [");
+                foreach (var num in item)
+                {
+                    System.Console.Write($" {num} ");
+                }
+                System.Console.WriteLine("],");
+            }
+            System.Console.WriteLine("]");
         }
     }
 }
