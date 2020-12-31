@@ -6,32 +6,37 @@
 
 // @lc code=start
 public class Solution {
-    public int[] QuickSort(int position, int[] nums)
-    {
-
-    }
-
     public int MaxArea(int[] height) {
         if(height.Length < 2)
         {
             return 0;
         }
-        int left = 0, right = 0;
-        int lowHeight = 0, currentMax = 0;
-        for(; left < height.Length - 1; left++)
+
+        int left = 0, right = height.Length - 1, maxArea = 0, tempArea= 0;
+        while(left < right)
         {
-            right = height.Length - 1;
-            for(; left < right; right--)
+            if(height[left] > height[right])
             {
-                lowHeight = (height[left] <= height[right]) ? height[left] : height[right];
-                int temp = lowHeight * (right - left);
-                if(temp > currentMax)
-                {
-                    currentMax = temp;
-                }
+                tempArea = (right - left) * height[right];
+                right--;
+            }
+            else if(height[left] < height[right])
+            {
+                tempArea = (right - left) * height[left];
+                left++;
+            }
+            else
+            {
+                tempArea = (right - left) * height[left];
+                left++;
+                right--;
+            }
+            if(tempArea > maxArea)
+            {
+                maxArea = tempArea;
             }
         }
-        return currentMax;
+        return maxArea;
     }
 }
 // @lc code=end

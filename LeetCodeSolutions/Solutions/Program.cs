@@ -1,4 +1,5 @@
 ﻿using System;
+using LeetCodeSolutions.ArrayProblems;
 using LeetCodeSolutions.Common.Statistic;
 
 namespace LeetCodeSolutions
@@ -7,15 +8,10 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            Action action = () => {
-                int[] a = new int[10000];
-                for(int i = 0; i < 10000; i++)
-                {
-                    a[i] = i;
-                }
-                System.Threading.Thread.Sleep(1234);
-            };
-            Statistics.Performance("测试任务", action);
+            int[] testArray = new int[]{1,8,6,2,5,4,8,3,7};
+            HoldTheMostWaterSolution test = new HoldTheMostWaterSolution();
+            int result = test.MaxArea(testArray);
+            System.Console.WriteLine($"容器最大面积为：{result}");
         }
     }
 }
