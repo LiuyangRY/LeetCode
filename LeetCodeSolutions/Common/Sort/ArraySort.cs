@@ -36,6 +36,37 @@ namespace LeetCodeSolutions.Common.Sort
             }
         #endregion
 
+        #region 选择排序
+            /// <summary>
+            /// 选择排序
+            /// </summary>
+            /// <param name="array">排序数组</param>
+            public static void SelectionSort(int[] array)
+            {
+                // 完整性检查
+                if(array == null || array.Length < 2)
+                {
+                    return;
+                }
+                // 当前最大值
+                int maxIndex = 0;
+                // 从后往前排序
+                for(int end = array.Length - 1; end > 0; end--)
+                {
+                    for(int start = 0; start <= end; start++)
+                    {
+                        // 从未排序的元素中找到最大值索引
+                        if(array[start] > array[maxIndex])
+                        {
+                            maxIndex = start;
+                        }
+                    }
+                    // 将最大值移到最后
+                    array.Swap(maxIndex, end);
+                }
+            }
+        #endregion
+
         #region 快速排序
             /// <summary>
             /// 双路指针快速排序（非递归方式）
@@ -114,9 +145,7 @@ namespace LeetCodeSolutions.Common.Sort
                 // 初始化基准索引、基准值、左指针与右指针
                 int baseIndex = (startIndex + endIndex) >> 1;
                 int baseNum = array[baseIndex];
-                // 将基准值保存在数组首部
-                array.Swap(baseIndex, startIndex);
-                int leftPointer = startIndex + 1, rightPointer = endIndex;
+                int leftPointer = startIndex, rightPointer = endIndex;
                 // 开始交换排序
                 while(leftPointer < rightPointer)
                 {
@@ -133,9 +162,7 @@ namespace LeetCodeSolutions.Common.Sort
                         array.Swap(leftPointer, rightPointer);
                     }
                 }
-                // 将基准数据放到合适的位置
-                array.Swap(startIndex, leftPointer);
-                return leftPointer;
+                return baseIndex;
             }
         #endregion
     }

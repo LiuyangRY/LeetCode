@@ -20,22 +20,48 @@ namespace LeetCodeSolutions.Solutions.ArrayProblems
                 {
                     return result;
                 }
+                if(i > 0 && nums[i].Equals(nums[i - 1]))
+                {
+                    continue;
+                }
                 else
                 {
                     int left = i + 1;
-                    while(left < nums.Length - 1)
+                    int right = nums.Length - 1;
+                    while(left < right)
                     {
-                        if(left.Equals(nums[i]))
+                        int currentValue = nums[i] + nums[left] + nums[right];
+                        if(currentValue.Equals(0))
                         {
+                            result.Add(new List<int>
+                            {
+                                nums[i],
+                                nums[left],
+                                nums[right]
+                            });
                             left++;
+                            right--;
+                            while(left < right && nums[left].Equals(nums[left - 1]))
+                            {
+                                left++;
+                            }
+                            while(left < right && nums[right].Equals(nums[right + 1]))
+                            {
+                                right--;
+                            }
+                        }
+                        else if(currentValue > 0)
+                        {
+                            right--;
                         }
                         else
                         {
-
+                            left++;
                         }
                     }
                 }
             }
+            return result;
         }
     }
 }

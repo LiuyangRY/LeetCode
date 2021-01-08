@@ -6,56 +6,134 @@
 
 // @lc code=start
 public class Solution {
+    public static int[] Swap(int[] array, int firstPosition, int secondePosition)
+    {
+        int temp = array[firstPosition];
+        array[firstPosition] = array[secondePosition];
+        array[secondePosition] = temp;
+        return array;
+    }
+
+    /// <summary>
+    /// 双路指针快速排序（递归方式）
+    /// </summary>
+    /// <param name="array">排序数组</param>
+    /// <param name="startIndex">排序开始索引</param>
+    /// <param name="endIndex">排序结束索引</param>
+    public static void QuickSort(int[] array, int startIndex, int endIndex)
+    {
+        // 完整性检查
+        if(array == null || array.Length < 2)
+        {
+            return;
+        }
+        if(startIndex >= endIndex)
+        {
+            return;
+        }
+        // 将数组按照基准索引分段（左边都小于基准值，右边都大于基准值）
+        int index = Partition(array, startIndex, endIndex);
+        // 递归对基准索引左边进行排序
+        QuickSort(array, startIndex, index - 1);
+        // 递归对基准索引右边进行排序
+        QuickSort(array, index + 1, endIndex);
+    }
+
+    /// <summary>
+    /// 根据基准值将数组分为两部分（左边都小于基准值，右边都大于基准值）
+    /// </summary>
+    /// <param name="array">排序数组</param>
+    /// <param name="startIndex">排序开始索引</param>
+    /// <param name="endIndex">排序结束索引</param>
+    /// <returns>基准索引值</returns>
+    private static int Partition(int[] array, int startIndex, int endIndex)
+    {
+        // 完整性检查
+        if(startIndex >= endIndex)
+        {
+            return startIndex;
+        }
+        // 初始化基准索引、基准值、左指针与右指针
+        int baseIndex = (startIndex + endIndex) >> 1;
+        int baseNum = array[baseIndex];
+        // 将基准值保存在数组首部
+        Swap(array, baseIndex, startIndex);
+        int leftPointer = startIndex + 1, rightPointer = endIndex;
+        // 开始交换排序
+        while(leftPointer < rightPointer)
+        {
+            while(leftPointer < rightPointer && array[rightPointer] >= baseNum)
+            {
+                rightPointer--;
+            }
+            while(leftPointer < rightPointer && array[leftPointer] < baseNum)
+            {
+                leftPointer++;
+            }
+            if(leftPointer < rightPointer)
+            {
+                Swap(array, leftPointer, rightPointer);
+            }
+        }
+        // 将基准数据放到合适的位置
+        Swap(array, startIndex, leftPointer);
+        return leftPointer;
+    }
+
     public IList<IList<int>> ThreeSum(int[] nums) {
+        IList<IList<int>> result = new List<IList<int>>();
+
         if(nums == null || nums.Length < 2)
         {
-            return new List<IList<int>>();
+            return result;
         }
-        IList<IList<int>> result = new List<IList<int>>();
-        HashSet<HashSet<int>> existElement = new HashSet<HashSet<int>>();
-        for (int i = 0; i < (nums.Length - 2); i++)
+        QuickSort(nums, 0, nums.Length - 1);
+        
+        for(int i = 0; i < nums.Length; i++)
         {
-            int left = i + 1;
-            while (left < (nums.Length - 1))
+            if(nums[i] > 0)
             {
-                int target = nums[i] + nums[left];
-                int right = left + 1;
-                while (right < nums.Length)
+                return result;
+            }
+            if(i > 0 && nums[i].Equals(nums[i - 1]))
+            {
+                continue;
+            }
+            else
+            {
+                int left = i + 1;
+                int right = nums.Length - 1;
+                while(left < right)
                 {
-                    if(target.Equals((-nums[right])))
+                    int currentValue = nums[i] + nums[left] + nums[right];
+                    if(currentValue.Equals(0))
                     {
-                        if(result.Count > 0)
+                        result.Add(new List<int>
                         {
-                            HashSet<int> temp = new HashSet<int>();
-                            temp.Add(nums[i]);
-                            temp.Add(nums[left]);
-                            temp.Add(nums[right]);
-                            if(!(existElement.Contains(temp)))
-                            {
-                                result.Add(new List<int>()
-                                {
-                                    nums[i],nums[left],nums[right]
-                                });
-                                existElement.Add(temp);
-                            }
-                        }
-                        else
+                            nums[i],
+                            nums[left],
+                            nums[right]
+                        });
+                        while(left < right && nums[left].Equals(nums[left + 1]))
                         {
-                            HashSet<int> temp = new HashSet<int>();
-                            temp.Add(nums[i]);
-                            temp.Add(nums[left]);
-                            temp.Add(nums[right]);
-                            result.Add(new List<int>()
-                            {
-                                nums[i],nums[left],nums[right]
-                            });
-                            existElement.Add(temp);
+                            left++;
                         }
-                        break;
+                        while(left < right && nums[right].Equals(nums[right - 1]))
+                        {
+                            right--;
+                        }
+                        left++;
+                        right--;
                     }
-                    right++;
+                    else if(currentValue > 0)
+                    {
+                        right--;
+                    }
+                    else
+                    {
+                        left++;
+                    }
                 }
-                left++;
             }
         }
         return result;
