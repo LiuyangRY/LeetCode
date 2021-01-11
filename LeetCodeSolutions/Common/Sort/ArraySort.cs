@@ -48,11 +48,11 @@ namespace LeetCodeSolutions.Common.Sort
                 {
                     return;
                 }
-                // 当前最大值
-                int maxIndex = 0;
                 // 从后往前排序
                 for(int end = array.Length - 1; end > 0; end--)
                 {
+                    // 当前最大值
+                    int maxIndex = 0;
                     for(int start = 0; start <= end; start++)
                     {
                         // 从未排序的元素中找到最大值索引
@@ -143,7 +143,7 @@ namespace LeetCodeSolutions.Common.Sort
                     return startIndex;
                 }
                 // 初始化基准索引、基准值、左指针与右指针
-                int baseIndex = (startIndex + endIndex) >> 1;
+                int baseIndex = startIndex + ((endIndex - startIndex) >> 1); // 防止指针过大导致溢出问题
                 int baseNum = array[baseIndex];
                 int leftPointer = startIndex, rightPointer = endIndex;
                 // 开始交换排序
