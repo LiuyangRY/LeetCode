@@ -3,7 +3,7 @@ namespace LeetCodeSolutions.Common.Sort
     /// <summary>
     /// 选择排序
     /// </summary>
-    public class SelectionSort : Sort
+    public class SelectionSort : BaseSort
     {
         /// <summary>
         /// 选择排序构造函数

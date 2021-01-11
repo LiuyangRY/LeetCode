@@ -3,7 +3,7 @@ namespace LeetCodeSolutions.Common.Sort
     /// <summary>
     /// 冒泡排序
     /// </summary>
-    public class BubbleSort : Sort
+    public class BubbleSort : BaseSort
     {
         /// <summary>
         /// 冒泡排序构造函数

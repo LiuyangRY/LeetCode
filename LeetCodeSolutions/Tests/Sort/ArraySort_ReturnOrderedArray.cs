@@ -19,7 +19,7 @@ namespace LeetCodeSolutions.Tests.Sort
             bool actual = array.JudgeOrdered(true);
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace LeetCodeSolutions.Tests.Sort
             bool actual = array.JudgeOrdered(true);
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace LeetCodeSolutions.Tests.Sort
             bool actual = array.JudgeOrdered(true);
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace LeetCodeSolutions.Tests.Sort
             bool actual = array.JudgeOrdered(true);
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace LeetCodeSolutions.Common.Sort
 {
     /// <summary>
     /// 快速排序
-    public class QuickSort : Sort
+    public class QuickSort : BaseSort
     {
         /// <summary>
         /// 是否使用递归方式排序

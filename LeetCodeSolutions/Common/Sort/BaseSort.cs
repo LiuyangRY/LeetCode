@@ -4,15 +4,15 @@ using System.Text;
 namespace LeetCodeSolutions.Common.Sort
 {
     /// <summary>
-    /// 排序类
+    /// 基本排序类
     /// </summary>
-    public abstract class Sort
+    public abstract class BaseSort
     {
         /// <summary>
         /// 排序类构造函数
         /// </summary>
         /// <param name="array"></param>
-        public Sort(int[] array)
+        public BaseSort(int[] array)
         {
             // 完整性检查
             if(array == null)
@@ -108,6 +108,10 @@ namespace LeetCodeSolutions.Common.Sort
                 if(Array == null)
                 {
                     return false;
+                }
+                if(Array.Length.Equals(1))
+                {
+                    return true;
                 }
                 // 假设数组已经是有序的
                 bool isSorted = true;

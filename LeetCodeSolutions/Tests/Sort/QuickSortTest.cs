@@ -20,7 +20,7 @@ namespace LeetCodeSolutions.Tests.Sort
             bool actual = qs.JudgeOrdered(true);
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
     }
 }
