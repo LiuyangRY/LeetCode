@@ -68,11 +68,19 @@ namespace LeetCodeSolutions.Common.Sort
             /// </summary>
             /// <param name="firstIndex">第一个值索引</param>
             /// <param name="secondIndex">第二个值索引</param>
-            /// <returns>第一个值与第二个值的差值（第一个值大于第二个值，返回正数；第一个值小于第二个值，返回负数；两数相等，返回0）</returns>
+            /// <returns>第一个值与第二个值的大小关系（第一个值大于第二个值，返回1；第一个值小于第二个值，返回-1；两数相等，返回0）</returns>
             public int CompareIndex(int firstIndex, int secondIndex)
             {
                 CompareCount++;
-                return Array[firstIndex] - Array[secondIndex];
+                if(Array[firstIndex] > Array[secondIndex])
+                {
+                    return 1;
+                }
+                else if(Array[firstIndex] < Array[secondIndex])
+                {
+                    return -1;
+                }
+                return 0;
             }
 
             /// <summary>
@@ -80,11 +88,19 @@ namespace LeetCodeSolutions.Common.Sort
             /// </summary>
             /// <param name="firstValue">第一个数</param>
             /// <param name="secondValue">第二个数</param>
-            /// <returns>第一个数与第二个数的差值（第一个数大于第二个数，返回正数；第一个数小于第二个数，返回负数；两数相等，返回0）</returns>
+            /// <returns>第一个数与第二个数的大小关系（第一个数大于第二个数，返回1；第一个数小于第二个数，返回-1；两数相等，返回0）</returns>
             public int CompareValue(int firstValue, int secondValue)
             {
                 CompareCount++;
-                return firstValue - secondValue;
+                if(firstValue > secondValue)
+                {
+                    return 1;
+                }
+                else if(firstValue < secondValue)
+                {
+                    return -1;
+                }
+                return 0;
             }
 
             /// <summary>

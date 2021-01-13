@@ -19,27 +19,33 @@ namespace LeetCodeSolutions.Common.Extensions
             {
                 return "";
             }
-
             StringBuilder time = new StringBuilder();
-            if(timeSpan.Days > 0)
+            if(timeSpan.TotalMilliseconds > 1)
             {
-                time.Append($"{timeSpan.Days}天");
+                if(timeSpan.Days > 0)
+                {
+                    time.Append($"{timeSpan.Days}天");
+                }
+                if(timeSpan.Hours > 0)
+                {
+                    time.Append($"{timeSpan.Hours}小时");
+                }
+                if(timeSpan.Minutes > 0)
+                {
+                    time.Append($"{timeSpan.Minutes}分钟");
+                }
+                if(timeSpan.Seconds > 0)
+                {
+                    time.Append($"{timeSpan.Seconds}秒");
+                }
+                if(timeSpan.Milliseconds > 0)
+                {
+                    time.Append($"{timeSpan.Milliseconds}毫秒");
+                }
             }
-            if(timeSpan.Hours > 0)
+            else
             {
-                time.Append($"{timeSpan.Hours}小时");
-            }
-            if(timeSpan.Minutes > 0)
-            {
-                time.Append($"{timeSpan.Minutes}分钟");
-            }
-            if(timeSpan.Seconds > 0)
-            {
-                time.Append($"{timeSpan.Seconds}秒");
-            }
-            if(timeSpan.Milliseconds > 0)
-            {
-                time.Append($"{timeSpan.Milliseconds}毫秒");
+                time.Append($"{timeSpan.TotalMilliseconds}毫秒");
             }
             return time.ToString();
         }
@@ -57,23 +63,23 @@ namespace LeetCodeSolutions.Common.Extensions
             }
 
             StringBuilder space = new StringBuilder();
-            if((spaceSize / 1073741824) > 0)
+            int count = (int)(spaceSize / 1073741824);
+            if(count > 0)
             {
-                int gb = (int)(spaceSize / 1073741824);
-                space.Append($"{gb}GB ");
-                spaceSize -= ((long)gb * 1073741824);
+                space.Append($"{count}GB ");
+                spaceSize -= ((long)count * 1073741824);
             }
-            if((spaceSize / 1048576) > 0)
+            count = (int)(spaceSize / 1048576);
+            if(count > 0)
             {
-                int mb = (int)(spaceSize / 1048576);
-                space.Append($"{mb}MB ");
-                spaceSize -= (mb * 1048576);
+                space.Append($"{count}MB ");
+                spaceSize -= (count * 1048576);
             }
-            if((spaceSize / 1024) > 0)
+            count = (int)(spaceSize / 1024);
+            if(count > 0)
             {
-                int kb = (int)(spaceSize / 1024);
-                space.Append($"{kb}KB ");
-                spaceSize -= kb * 1024;
+                space.Append($"{count}KB ");
+                spaceSize -= count * 1024;
             }
             if(spaceSize > 0)
             {
@@ -90,21 +96,27 @@ namespace LeetCodeSolutions.Common.Extensions
         public static string HumanNumber(this long number)
         {
             StringBuilder numberInfo = new StringBuilder();
-            if(number < 10000)
+            int count = (int)(number / 1000000000000);
+            if(count > 0)
+            {
+                numberInfo.Append($"{count}万亿");
+                number -= count * 1000000000000;
+            }
+            count = (int)(number / 100000000);
+            if(count > 0)
+            {
+                numberInfo.Append($"{count}亿");
+                number -= count * 100000000;
+            }
+            count = (int)(number / 10000);
+            if(count > 0)
+            {
+                numberInfo.Append($"{count}万");
+                number -= count * 10000;
+            }
+            if(number > 0)
             {
                 numberInfo.Append($"{number}");
-            }
-            if(number >= 10000 && number < 99999999)
-            {
-                numberInfo.Append($"{number/10000}万");
-            }
-            if(number >= 100000000 && number < 999999999999)
-            {
-                numberInfo.Append($"{number/100000000}亿");
-            }
-            if(number >= 1000000000000 && number < 999999999999)
-            {
-                numberInfo.Append($"{number/1000000000000}万亿");
             }
             return numberInfo.ToString();
         }
