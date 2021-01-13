@@ -145,7 +145,9 @@ namespace LeetCodeSolutions.Common.Sort
                 // 初始化基准索引、基准值、左指针与右指针
                 int baseIndex = startIndex + ((endIndex - startIndex) >> 1); // 防止指针过大导致溢出问题
                 int baseNum = array[baseIndex];
-                int leftPointer = startIndex, rightPointer = endIndex;
+                // 将基准数放到最开始的位置
+                array.Swap(startIndex, baseIndex);
+                int leftPointer = startIndex + 1, rightPointer = endIndex;
                 // 开始交换排序
                 while(leftPointer < rightPointer)
                 {
@@ -153,7 +155,7 @@ namespace LeetCodeSolutions.Common.Sort
                     {
                         rightPointer--;
                     }
-                    while(leftPointer < rightPointer && array[leftPointer] < baseNum)
+                    while(leftPointer < rightPointer && array[leftPointer] <= baseNum)
                     {
                         leftPointer++;
                     }
@@ -162,7 +164,13 @@ namespace LeetCodeSolutions.Common.Sort
                         array.Swap(leftPointer, rightPointer);
                     }
                 }
-                return baseIndex;
+                // 判断是否交换左只针与基准数的位置
+                if(array[startIndex] > array[leftPointer])
+                {
+                    array.Swap(startIndex, leftPointer);
+                }
+                // 返回排好序的位置索引（左边都是小于等于该位置数，右边都是大于等于该位置的数）
+                return leftPointer;
             }
         #endregion
     }

@@ -10,6 +10,7 @@ namespace LeetCodeSolutions.Tests.Sort
         /// </summary>
         /// <param name="array">测试数组</param>
         [Theory]
+        [InlineData(new int[]{-1,0,1,2,-1,-4})]
         [InlineData(new int[]{1,8,6,2,5,4,8,3,7})]
         public void BubbleSortOrderTest(int[] array)
         {

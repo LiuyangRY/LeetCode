@@ -56,9 +56,9 @@ public class Solution {
         // 初始化基准索引、基准值、左指针与右指针
         int baseIndex = (startIndex + endIndex) >> 1;
         int baseNum = array[baseIndex];
-        // 将基准值保存在数组首部
-        Swap(array, baseIndex, startIndex);
-        int leftPointer = startIndex + 1, rightPointer = endIndex;
+        // 将基准数放到最开始的位置
+        Swap(array, startIndex, baseIndex);
+        int leftPointer = startIndex, rightPointer = endIndex;
         // 开始交换排序
         while(leftPointer < rightPointer)
         {
@@ -66,7 +66,7 @@ public class Solution {
             {
                 rightPointer--;
             }
-            while(leftPointer < rightPointer && array[leftPointer] < baseNum)
+            while(leftPointer < rightPointer && array[leftPointer] <= baseNum)
             {
                 leftPointer++;
             }
@@ -75,8 +75,11 @@ public class Solution {
                 Swap(array, leftPointer, rightPointer);
             }
         }
-        // 将基准数据放到合适的位置
-        Swap(array, startIndex, leftPointer);
+        // 判断是否交换左只针与基准数的位置
+        if(array[startIndex] > array[leftPointer])
+        {
+            Swap(array, startIndex, leftPointer);
+        }
         return leftPointer;
     }
 
