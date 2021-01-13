@@ -15,7 +15,7 @@ namespace LeetCodeSolutions.Tests.Sort
         public void QuickSortOrderTest(int[] array)
         {
             QuickSort qs = new QuickSort(array);
-            qs.SortArray();
+            qs.Sort();
 
             bool actual = qs.JudgeOrdered(true);
             bool excepted = true;

@@ -1,5 +1,7 @@
 using System;
+using System.Diagnostics;
 using System.Text;
+using LeetCodeSolutions.Common.Extensions;
 
 namespace LeetCodeSolutions.Common.Sort
 {
@@ -32,14 +34,17 @@ namespace LeetCodeSolutions.Common.Sort
             /// <summary>
             /// 交换次数
             /// </summary>
-            /// <value></value>
-            public int SwapCount { get; set; }
+            public long SwapCount { get; set; } = 0;
 
             /// <summary>
             /// 比较次数
             /// </summary>
-            /// <value></value>
-            public int CompareCount { get; set; }
+            public long CompareCount { get; set; } = 0;
+
+            /// <summary>
+            /// 排序耗时
+            /// </summary>
+            public TimeSpan SpendTimeSpan { get; set; }
         #endregion
 
         #region 公共方法
@@ -88,13 +93,12 @@ namespace LeetCodeSolutions.Common.Sort
             public override string ToString()
             {
                 StringBuilder sb = new StringBuilder();
-                sb.Append("[");
-                foreach (var num in Array)
-                {
-                    sb.Append($" {num},");
-                }
-                sb.Remove(sb.Length - 1, 1);    // 去除最后一个逗号
-                sb.Append("]");
+                sb.AppendLine($"【{this.GetType().Name}】：");
+                sb.Append($"排序耗时：{SpendTimeSpan.HumanTimeSpanCN()}\t");
+                sb.Append($"交换次数：{SwapCount.HumanNumber()}次\t");
+                sb.Append($"比较次数：{CompareCount.HumanNumber()}次\t");
+                sb.AppendLine();
+                sb.AppendLine("--------------------------------------------------");
                 return sb.ToString();
             }
 
@@ -147,14 +151,19 @@ namespace LeetCodeSolutions.Common.Sort
             /// <summary>
             /// 排序
             /// </summary>
-            public void SortArray()
+            public void Sort()
             {
                 // 完整性检查
                 if(Array == null || Array.Length < 2)
                 {
                     return ;
                 }
+                Stopwatch watch = Stopwatch.StartNew();
+                // 开始排序
                 SortCore();
+                watch.Stop();
+                // 排序耗时
+                SpendTimeSpan = watch.Elapsed;
             }
 
             /// <summary>

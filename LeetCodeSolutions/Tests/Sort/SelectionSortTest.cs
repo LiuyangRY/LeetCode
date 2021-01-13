@@ -16,7 +16,7 @@ namespace LeetCodeSolutions.Tests.Sort
         {
             SelectionSort ss = new SelectionSort(array);
 
-            ss.SortArray();
+            ss.Sort();
 
             bool actual = ss.JudgeOrdered(true);
             bool excepted = true;

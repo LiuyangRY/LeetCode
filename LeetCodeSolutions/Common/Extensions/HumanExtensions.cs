@@ -9,10 +9,10 @@ namespace LeetCodeSolutions.Common.Extensions
     public static class HumanExtensions
     {
         /// <summary>
-        /// 将时间跨度转换为易于人理解的中文含义
+        /// 将时间跨度转换为易于人理解的中文信息
         /// </summary>
         /// <param name="timeSpan">时间跨度</param>
-        /// <returns>时间跨度的中文含义</returns>
+        /// <returns>时间跨度的中文信息</returns>
         public static string HumanTimeSpanCN(this TimeSpan timeSpan)
         {
             if(timeSpan.TotalMilliseconds.Equals(0))
@@ -44,6 +44,11 @@ namespace LeetCodeSolutions.Common.Extensions
             return time.ToString();
         }
 
+        /// <summary>
+        /// 空间占用转换为易于人理解的中文信息
+        /// </summary>
+        /// <param name="spaceSize">占用空间（比特）</param>
+        /// <returns>空间占用的中文信息</returns>
         public static string HumanSpaceOccupied(this long spaceSize)
         {
             if(spaceSize.Equals(0))
@@ -75,6 +80,33 @@ namespace LeetCodeSolutions.Common.Extensions
                 space.Append($"{spaceSize}B");
             }
             return space.ToString();
+        }
+
+        /// <summary>
+        /// 将正整数转换为易于人理解的中文信息
+        /// </summary>
+        /// <param name="number">正整数</param>
+        /// <returns>正整数的中文信息</returns>
+        public static string HumanNumber(this long number)
+        {
+            StringBuilder numberInfo = new StringBuilder();
+            if(number < 10000)
+            {
+                numberInfo.Append($"{number}");
+            }
+            if(number >= 10000 && number < 99999999)
+            {
+                numberInfo.Append($"{number/10000}万");
+            }
+            if(number >= 100000000 && number < 999999999999)
+            {
+                numberInfo.Append($"{number/100000000}亿");
+            }
+            if(number >= 1000000000000 && number < 999999999999)
+            {
+                numberInfo.Append($"{number/1000000000000}万亿");
+            }
+            return numberInfo.ToString();
         }
     }
 }

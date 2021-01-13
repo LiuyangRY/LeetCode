@@ -16,7 +16,7 @@ namespace LeetCodeSolutions.Tests.Sort
         {
             BubbleSort bs = new BubbleSort(array);
 
-            bs.SortArray();
+            bs.Sort();
 
             bool actual = bs.JudgeOrdered(true);
             bool excepted = true;

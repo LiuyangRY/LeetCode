@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace LeetCodeSolutions.Common.Extensions
 {
     /// <summary>
@@ -24,15 +26,17 @@ namespace LeetCodeSolutions.Common.Extensions
         /// 打印数组
         /// </summary>
         /// <param name="array">数组</param>
-        public static void Print(this int[] array)
+        public static string ArrayContent(this int[] array)
         {
-            System.Console.Write("[");
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[");
             foreach (var num in array)
             {
-                System.Console.Write($" {num} ");
+                sb.Append($" {num},");
             }
-            System.Console.Write("]");
-            System.Console.WriteLine();
+            sb.Remove(sb.Length - 1, 1);    // 去除最后一个逗号
+            sb.Append(" ]");
+            return sb.ToString();
         }
 
         /// <summary>

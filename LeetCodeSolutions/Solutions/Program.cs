@@ -1,4 +1,5 @@
-﻿using LeetCodeSolutions.Solutions.ArrayProblems;
+﻿using LeetCodeSolutions.Common.Extensions;
+using LeetCodeSolutions.Common.Sort;
 
 namespace LeetCodeSolutions
 {
@@ -6,10 +7,16 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            int[] testArray = new int[]{-100,-98,-2,-1};
-            TheCLosestThreeNumSum test = new TheCLosestThreeNumSum();
-            var result = test.ThreeSumClosest(testArray, -101);
-            System.Console.WriteLine(result);
+            int[] testArray = new int[]{1,8,6,2,5,4,8,3,7};
+            BubbleSort bubbleSort = new BubbleSort(testArray);
+            SelectionSort selectionSort = new SelectionSort(testArray);
+            QuickSort quickSort = new QuickSort(testArray);
+            bubbleSort.Sort();
+            System.Console.WriteLine(bubbleSort.ToString());
+            selectionSort.Sort();
+            System.Console.WriteLine(selectionSort.ToString());
+            quickSort.Sort();
+            System.Console.WriteLine(quickSort.ToString());
         }
     }
 }
