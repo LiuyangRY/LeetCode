@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Text;
 using LeetCodeSolutions.Common.Extensions;
 
-namespace LeetCodeSolutions.Common.Sort
+namespace LeetCodeSolutions.Algorithm.Sort
 {
     /// <summary>
     /// 基本排序类

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace LeetCodeSolutions.Common.Sort
+namespace LeetCodeSolutions.Algorithm.Sort
 {
     /// <summary>
     /// 快速排序

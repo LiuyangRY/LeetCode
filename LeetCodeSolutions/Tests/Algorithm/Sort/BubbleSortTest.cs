@@ -1,24 +1,24 @@
 using Xunit;
-using LeetCodeSolutions.Common.Sort;
+using LeetCodeSolutions.Algorithm.Sort;
 
-namespace LeetCodeSolutions.Tests.Sort
+namespace LeetCodeSolutions.Tests.Algorithm.Sort
 {
-    public class SelectionSortTest
+    public class BubbleSortTest
     {
         /// <summary>
-        /// 选择排序测试
+        /// 冒泡排序测试
         /// </summary>
         /// <param name="array">测试数组</param>
         [Theory]
         [InlineData(new int[]{-1,0,1,2,-1,-4})]
         [InlineData(new int[]{1,8,6,2,5,4,8,3,7})]
-        public void SelectionSortOrderTest(int[] array)
+        public void BubbleSortOrderTest(int[] array)
         {
-            SelectionSort ss = new SelectionSort(array);
+            BubbleSort bs = new BubbleSort(array);
 
-            ss.Sort();
+            bs.Sort();
 
-            bool actual = ss.JudgeOrdered(true);
+            bool actual = bs.JudgeOrdered(true);
             bool excepted = true;
 
             Assert.Equal(excepted, actual);

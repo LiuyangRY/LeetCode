@@ -1,7 +1,7 @@
 using Xunit;
-using LeetCodeSolutions.Common.Sort;
+using LeetCodeSolutions.Algorithm.Sort;
 
-namespace LeetCodeSolutions.Tests.Sort
+namespace LeetCodeSolutions.Tests.Algorithm.Sort
 {
     /// <summary>
     /// 排序类测试

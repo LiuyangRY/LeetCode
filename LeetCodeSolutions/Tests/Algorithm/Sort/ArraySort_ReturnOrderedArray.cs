@@ -2,7 +2,7 @@ using Xunit;
 using LeetCodeSolutions.Common.Sort;
 using LeetCodeSolutions.Common.Extensions;
 
-namespace LeetCodeSolutions.Tests.Sort
+namespace LeetCodeSolutions.Tests.Algorithm.Sort
 {
     public class ArraySort_ReturnOrderedArray
     {

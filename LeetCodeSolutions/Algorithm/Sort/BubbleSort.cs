@@ -1,4 +1,4 @@
-namespace LeetCodeSolutions.Common.Sort
+namespace LeetCodeSolutions.Algorithm.Sort 
 {
     /// <summary>
     /// 冒泡排序

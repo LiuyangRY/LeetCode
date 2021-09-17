@@ -3,7 +3,7 @@ using Xunit;
 
 namespace LeetCodeSolutions.Tests.Common
 {
-    public class CommonMethod
+    public class CommonMethodTest
     {
         /// <summary>
         /// 升序数组返回true
@@ -54,7 +54,7 @@ namespace LeetCodeSolutions.Tests.Common
         }
 
         /// <summary>
-        /// 升序数组返回false
+        /// 降序数组返回false
         /// </summary>
         /// <param name="array"></param>
         [Theory]
