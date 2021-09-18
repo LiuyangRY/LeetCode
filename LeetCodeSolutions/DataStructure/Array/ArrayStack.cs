@@ -20,6 +20,11 @@ namespace LeetCodeSolutions.DataStructure
 			array = new Array<T>(capacity);
 		}
 
+		public int GetCapacity()
+		{
+			return array.GetCapacity();
+		}
+
 		public int GetSize()
 		{
 			return array.GetSize();

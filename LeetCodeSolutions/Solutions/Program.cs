@@ -1,12 +1,12 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using LeetCodeSolutions.Algorithm.Sort;
 using LeetCodeSolutions.Common.Extensions;
 using LeetCodeSolutions.Common.Helpers;
-using LeetCodeSolutions.Common.Sort;
 
 namespace LeetCodeSolutions
 {
-    class Program
+	class Program
     {
         static void Main(string[] args)
         {

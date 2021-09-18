@@ -13,6 +13,12 @@ namespace LeetCodeSolutions.DataStructure.Interface
 		int GetSize();
 
 		/// <summary>
+		/// 获取栈容量
+		/// </summary>
+		/// <returns>栈容量</returns>
+		int GetCapacity();
+
+		/// <summary>
 		/// 栈是否为空
 		/// </summary>
 		/// <returns>栈为空返回true，否则返回false</returns>

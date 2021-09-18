@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj" />
+    <ProjectReference Include="..\Algorithm\Algorithm.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
