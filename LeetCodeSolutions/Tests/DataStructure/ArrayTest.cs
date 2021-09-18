@@ -11,28 +11,28 @@ namespace LeetCodeSolutions.Tests.DataStructure
             TestModel[] array = new TestModel[]{ new(){ Id = 1, TestName = "t1" }, new(){ Id = 2, TestName = "t2" }};
             Array<TestModel> test = new();
             bool exceptedBool = true;
-            Assert.Equal(test.IsEmpty(), exceptedBool);
+            Assert.Equal(exceptedBool, test.IsEmpty());
             int exceptedValue = 0;
-            Assert.Equal(test.GetSize(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetSize());
             exceptedValue = 10;
-            Assert.Equal(test.GetCapacity(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetCapacity());
             for(int i = 0; i < array.Length; i++)
             {
                 test.Add(array[i]);
             }
             exceptedBool = false;
-            Assert.Equal(test.IsEmpty(), exceptedBool);
+            Assert.Equal(exceptedBool, test.IsEmpty());
             exceptedValue = 2;
-            Assert.Equal(test.GetSize(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetSize());
             exceptedValue = 10;
-            Assert.Equal(test.GetCapacity(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetCapacity());
             test.Clear();
             exceptedBool = true;
-            Assert.Equal(test.IsEmpty(), exceptedBool);
+            Assert.Equal(exceptedBool, test.IsEmpty());
             exceptedValue = 0;
-            Assert.Equal(test.GetSize(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetSize());
             exceptedValue = 10;
-            Assert.Equal(test.GetCapacity(), exceptedValue);
+            Assert.Equal(exceptedValue, test.GetCapacity());
         }
 
         [Fact]
@@ -44,20 +44,20 @@ namespace LeetCodeSolutions.Tests.DataStructure
             TestModel t1 = test.Get(0);
             int exceptedValue = 1;
             string exceptedString = "t1";
-            Assert.Equal(t1.Id, exceptedValue);
-            Assert.Equal(t1.TestName, exceptedString);
+            Assert.Equal(exceptedValue, t1.Id);
+            Assert.Equal(exceptedString, t1.TestName);
             test.AddFirst(array[1]);
-            TestModel t2 = test.Get(0);
+            TestModel t2 = test.GetFirst();
             exceptedValue = 2;
             exceptedString = "t2";
-            Assert.Equal(t2.Id, exceptedValue);
-            Assert.Equal(t2.TestName, exceptedString);
+            Assert.Equal(exceptedValue, t2.Id);
+            Assert.Equal(exceptedString, t2.TestName);
             test.AddLast(array[2]);
-            TestModel t3 = test.Get(2);
+            TestModel t3 = test.GetLast();
             exceptedValue = 3;
             exceptedString = "t3";
-            Assert.Equal(t3.Id, exceptedValue);
-            Assert.Equal(t3.TestName, exceptedString);
+            Assert.Equal(exceptedValue, t3.Id);
+            Assert.Equal(exceptedString, t3.TestName);
         }
 
         [Fact]
@@ -67,17 +67,17 @@ namespace LeetCodeSolutions.Tests.DataStructure
             Array<TestModel> test = new();
             bool exceptedBool = false;
             int exceptedValue = 0;
-            Assert.Equal(test.Contain(array[0]), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(array[0]));
             test.Add(array[0]);
             TestModel t1 = test.Get(0);
             exceptedBool = true;
             exceptedValue = 1;
-            Assert.Equal(test.Contain(t1), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(t1));
             test.Set(0, array[1]);
             TestModel t2 = test.Get(0);
             exceptedValue = 2;
-            Assert.Equal(test.Contain(t2), exceptedBool);
-            Assert.Equal(t2.Id, exceptedValue);
+            Assert.Equal(exceptedBool, test.Contain(t2));
+            Assert.Equal(exceptedValue, t2.Id);
         }
 
         [Fact]
@@ -89,27 +89,20 @@ namespace LeetCodeSolutions.Tests.DataStructure
             test.Add(array[0]);
             test.Add(array[1]);
             test.Add(array[2]);
-            Assert.Equal(test.Contain(array[0]), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(array[0]));
             test.RemoveFirst();
             exceptedBool = false;
-			Assert.Equal(test.Contain(array[0]), exceptedBool);
+			Assert.Equal(exceptedBool, test.Contain(array[0]));
             exceptedBool = true;
-			Assert.Equal(test.Contain(array[1]), exceptedBool);
+			Assert.Equal(exceptedBool, test.Contain(array[1]));
             test.Remove(0);
             exceptedBool = false;
-            Assert.Equal(test.Contain(array[1]), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(array[1]));
             exceptedBool = true;
-            Assert.Equal(test.Contain(array[2]), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(array[2]));
             test.RemoveLast();
             exceptedBool = false;
-            Assert.Equal(test.Contain(array[2]), exceptedBool);
+            Assert.Equal(exceptedBool, test.Contain(array[2]));
         }
-    }
-
-    public class TestModel
-    {
-        public int Id { get; set; }
-
-        public string TestName { get; set; }
     }
 }

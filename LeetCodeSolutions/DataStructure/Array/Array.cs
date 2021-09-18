@@ -107,6 +107,24 @@ namespace LeetCodeSolutions.DataStructure
 		}
 
 		/// <summary>
+		/// 获取第一个元素
+		/// </summary>
+		/// <returns>第一个元素</returns>
+		public T GetFirst()
+		{
+			return Get(0);
+		}
+
+		/// <summary>
+		/// 获取最后一个元素
+		/// </summary>
+		/// <returns>最后一个元素</returns>
+		public T GetLast()
+		{
+			return Get(size - 1);
+		}
+
+		/// <summary>
 		/// 修改指定位置的元素
 		/// </summary>
 		/// <param name="index">指定位置</param>

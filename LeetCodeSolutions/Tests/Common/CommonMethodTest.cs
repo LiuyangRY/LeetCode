@@ -18,7 +18,7 @@ namespace LeetCodeSolutions.Tests.Common
 
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace LeetCodeSolutions.Tests.Common
 
             bool excepted = false;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace LeetCodeSolutions.Tests.Common
 
             bool excepted = true;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace LeetCodeSolutions.Tests.Common
 
             bool excepted = false;
 
-            Assert.Equal(actual, excepted);
+            Assert.Equal(excepted, actual);
         }
     }
 }
