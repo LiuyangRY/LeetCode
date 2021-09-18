@@ -1,8 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using LeetCodeSolutions.Algorithm.Sort;
-using LeetCodeSolutions.Common.Extensions;
-using LeetCodeSolutions.Common.Helpers;
+﻿using LeetCodeSolutions.DataStructure;
+using LeetCodeSolutions.DataStructure.Interface;
+using System;
 
 namespace LeetCodeSolutions
 {
@@ -10,33 +8,31 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            Test(cts);
+            int opCount = 10000;
+
+            ArrayQueue<int> arrayQueue = new();
+            double time1 = TestQueue(arrayQueue, opCount);
+            System.Console.WriteLine($"ArrayQueue, ticks: {time1}");
+
+            LoopQueue<int> loopQueue = new();
+            double time2 = TestQueue(loopQueue, opCount);
+            System.Console.WriteLine($"LoopQueue, ticks: {time2}");
         }
 
-        static void Test(CancellationTokenSource cts)
+        static double TestQueue(IQueue<int> queue, int opCount)
         {
-            for(int i = 0; i < 10000; i++)
+            Random random = new();
+            long startTime = DateTime.Now.Ticks;
+            for(int i = 0; i < opCount; i++)
             {
-                if(!cts.IsCancellationRequested)
-                {
-                    Task.Run(() =>
-                    {
-                        Thread.CurrentThread.IsBackground = false;
-                        int[] testArray = ArrayHelper.CreateRandomArray(200000);
-                        QuickSort quickSort = new QuickSort(testArray);
-                        quickSort.Sort();
-                        System.Console.WriteLine(quickSort.ToString());
-                        bool isOrdered = quickSort.JudgeOrdered();
-                        if(!isOrdered)
-                        {
-                            cts.Cancel();
-                            System.Console.WriteLine($"数组无序:{quickSort.Array.ArrayContent()}");
-                            System.Console.ReadLine();
-                        }
-                    }, cts.Token);
-               }
+                queue.EnQueue(random.Next(int.MaxValue));
             }
+            for(int i = 0; i < opCount; i++)
+            {
+                queue.DeQueue();
+            }
+            long endTime = DateTime.Now.Ticks;
+            return endTime - startTime;
         }
     }
 }

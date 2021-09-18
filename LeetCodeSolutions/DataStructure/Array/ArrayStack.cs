@@ -59,7 +59,10 @@ namespace LeetCodeSolutions.DataStructure
 			{
 				sb.Append($"{array.Get(i)},");
 			}
-			sb.Remove(sb.Length - 1, 1);
+			if(size > 0)
+			{
+				sb.Remove(sb.Length - 1, 1);
+			}
 			sb.Append("] top");
 			return sb.ToString();
 		}
