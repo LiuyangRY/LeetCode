@@ -5,7 +5,7 @@ namespace LeetCodeSolutions.DataStructure
 {
 	public class LinkedList<T>
 	{
-		private Node<T> DummyHead { get; set; } = new();
+		private ListNode<T> DummyHead { get; set; } = new();
 
 		private int Size { get; set; } = 0;
 
@@ -69,13 +69,13 @@ namespace LeetCodeSolutions.DataStructure
 			{
 				throw new Exception("Add failed. Illegal index.");
 			}
-			Node<T> prevNode = DummyHead;
+			ListNode<T> prevNode = DummyHead;
 			while(index > 0)
 			{
 				index--;
 				prevNode = prevNode.Next;
 			}
-			Node<T> newNode = new(e, prevNode.Next);
+			ListNode<T> newNode = new(e, prevNode.Next);
 			prevNode.Next = newNode;
 			Size++;
 		}
@@ -91,7 +91,7 @@ namespace LeetCodeSolutions.DataStructure
 			{
 				throw new Exception("Get failed. Illegal index.");
 			}
-			Node<T> cur = DummyHead.Next;
+			ListNode<T> cur = DummyHead.Next;
 			for(int i = 0; i < index; i++)
 			{
 				cur = cur.Next;
@@ -128,12 +128,12 @@ namespace LeetCodeSolutions.DataStructure
 			{
 				throw new Exception("Get failed. Illegal index.");
 			}
-			Node<T> prev = DummyHead;
+			ListNode<T> prev = DummyHead;
 			for(int i = 0; i < index; i++)
 			{
 				prev = prev.Next;
 			}
-			Node<T> result = prev.Next;
+			ListNode<T> result = prev.Next;
 			prev.Next = result.Next;
 			result.Next = null;
 			Size--;
@@ -169,7 +169,7 @@ namespace LeetCodeSolutions.DataStructure
 			{
 				throw new Exception("Get failed. Illegal index.");
 			}
-			Node<T> cur = DummyHead.Next;
+			ListNode<T> cur = DummyHead.Next;
 			for(int i = 0; i < index; i++)
 			{
 				cur = cur.Next;
@@ -184,7 +184,7 @@ namespace LeetCodeSolutions.DataStructure
 		/// <returns>包含元素返回true，否则返回false</returns>
 		public bool Contain(T e)
 		{
-			Node<T> cur = DummyHead.Next;
+			ListNode<T> cur = DummyHead.Next;
 			while(cur is not null)
 			{
 				if(cur.Element.Equals(e))
@@ -199,7 +199,7 @@ namespace LeetCodeSolutions.DataStructure
 		public override string ToString()
 		{
 			StringBuilder sb = new();
-			for(Node<T> cur = DummyHead.Next; cur is not null; cur = cur.Next)
+			for(ListNode<T> cur = DummyHead.Next; cur is not null; cur = cur.Next)
 			{
 				sb.Append($"{cur}->");
 			}
