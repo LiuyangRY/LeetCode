@@ -3,10 +3,10 @@ using Xunit;
 
 namespace LeetCodeSolutions.Tests.DataStructure
 {
-	public class StackTest
+	public class ArrayStackTest
 	{
 		[Fact]
-		public void Stack_InitTest()
+		public void ArrayStack_InitTest()
 		{
 			ArrayStack<TestModel> test = new();
 			bool exceptedBool = true;
@@ -21,7 +21,7 @@ namespace LeetCodeSolutions.Tests.DataStructure
 		}
 		
 		[Fact]
-		public void Stack_PushTest()
+		public void ArrayStack_PushTest()
 		{
 			ArrayStack<TestModel> test = new();
 			bool exceptedBool = false;
@@ -32,10 +32,16 @@ namespace LeetCodeSolutions.Tests.DataStructure
 			Assert.Equal(exceptedBool, test.IsEmpty());
 			Assert.Equal(exceptedValue, test.Peek().Id);
 			Assert.Equal(exceptedString, test.Peek().TestName);
+			TestModel t2 = new() { Id = 2, TestName = "t2" };
+			test.Push(t2);
+			exceptedValue = 2;
+			exceptedString = "t2";
+			Assert.Equal(exceptedValue, test.Peek().Id);
+			Assert.Equal(exceptedString, test.Peek().TestName);
 		}
 
 		[Fact]
-		public void Stack_PopTest()
+		public void ArrayStack_PopTest()
 		{
 			ArrayStack<TestModel> test = new();
 			bool exceptedBool = false;
@@ -52,7 +58,7 @@ namespace LeetCodeSolutions.Tests.DataStructure
 		}
 
 		[Fact]
-		public void Stack_PeekTest()
+		public void ArrayStack_PeekTest()
 		{
 			ArrayStack<TestModel> test = new();
 			bool exceptedBool = false;
@@ -65,6 +71,11 @@ namespace LeetCodeSolutions.Tests.DataStructure
 			Assert.Equal(exceptedBool, test.IsEmpty());
 			Assert.Equal(t1.Id, peek.Id);
 			Assert.Equal(t1.TestName, peek.TestName);
+			TestModel t2 = new() { Id = 2, TestName = "t2" };
+			test.Push(t2);
+			TestModel peek2 = test.Peek();
+			Assert.Equal(t2.Id, peek2.Id);
+			Assert.Equal(t2.TestName, peek2.TestName);
 		}
 	}
 }

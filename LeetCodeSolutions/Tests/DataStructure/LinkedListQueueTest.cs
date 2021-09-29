@@ -3,12 +3,12 @@ using Xunit;
 
 namespace LeetCodeSolutions.Tests.DataStructure
 {
-	public class QueueTest
+	public class LinkedListQueueTest
 	{
 		[Fact]
-		public void Queue_InitTest()
+		public void LinkedListQueue_InitTest()
 		{
-			ArrayQueue<TestModel> test = new();
+			LinkedListQueue<TestModel> test = new();
 			bool exceptedBool = true;
 			int exceptedValue = 0;
 			Assert.Equal(exceptedBool, test.IsEmpty());
@@ -21,9 +21,9 @@ namespace LeetCodeSolutions.Tests.DataStructure
 		}
 		
 		[Fact]
-		public void Queue_EnQueueTest()
+		public void LinkedListQueue_EnQueueTest()
 		{
-			ArrayQueue<TestModel> test = new();
+			LinkedListQueue<TestModel> test = new();
 			bool exceptedBool = false;
 			int exceptedValue = 1;
 			string exceptedString = "t1";
@@ -32,18 +32,30 @@ namespace LeetCodeSolutions.Tests.DataStructure
 			Assert.Equal(exceptedBool, test.IsEmpty());
 			Assert.Equal(exceptedValue, test.GetFront().Id);
 			Assert.Equal(exceptedString, test.GetFront().TestName);
+			TestModel t2 = new() { Id = 2, TestName = "t2" };
+			test.EnQueue(t2);
+			Assert.Equal(t1.Id, test.GetFront().Id);
+			Assert.Equal(t1.TestName, test.GetFront().TestName);
+	
 		}
 
 		[Fact]
-		public void Queue_DeQueueTest()
+		public void LinkedListQueue_DeQueueTest()
 		{
-			ArrayQueue<TestModel> test = new();
+			LinkedListQueue<TestModel> test = new();
 			bool exceptedBool = false;
-			int exceptedValue = 1;
+			int exceptedValue = 2;
 			TestModel t1 = new() { Id = 1, TestName = "t1"};
+			TestModel t2 = new() { Id = 2, TestName = "t2" };
 			test.EnQueue(t1);
+			test.EnQueue(t2);
 			Assert.Equal(exceptedBool, test.IsEmpty());
 			Assert.Equal(exceptedValue, test.GetSize());
+			Assert.Equal(t1.Id, test.GetFront().Id);
+			Assert.Equal(t1.TestName, test.GetFront().TestName);
+			test.DeQueue();
+			Assert.Equal(t2.Id, test.GetFront().Id);
+			Assert.Equal(t2.TestName, test.GetFront().TestName);
 			test.DeQueue();
 			exceptedBool = true;
 			exceptedValue = 0;
@@ -52,9 +64,9 @@ namespace LeetCodeSolutions.Tests.DataStructure
 		}
 
 		[Fact]
-		public void Queue_GetFrontTest()
+		public void LinkedListQueue_GetFrontTest()
 		{
-			ArrayQueue<TestModel> test = new();
+			LinkedListQueue<TestModel> test = new();
 			bool exceptedBool = false;
 			int exceptedValue = 1;
 			TestModel t1 = new() { Id = 1, TestName = "t1"};
