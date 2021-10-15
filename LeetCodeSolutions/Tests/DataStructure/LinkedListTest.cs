@@ -62,16 +62,16 @@ namespace LeetCodeSolutions.Tests.DataStructure
             LinkedList<TestModel> test = new();
             bool exceptedBool = false;
             int exceptedValue = 0;
-            Assert.Equal(exceptedBool, test.Contain(array[0]));
+            Assert.Equal(exceptedBool, test.Contains(array[0]));
             test.Add(0, array[0]);
             TestModel t1 = test.Get(0);
             exceptedBool = true;
             exceptedValue = 1;
-            Assert.Equal(exceptedBool, test.Contain(t1));
+            Assert.Equal(exceptedBool, test.Contains(t1));
             test.Set(0, array[1]);
             TestModel t2 = test.Get(0);
             exceptedValue = 2;
-            Assert.Equal(exceptedBool, test.Contain(t2));
+            Assert.Equal(exceptedBool, test.Contains(t2));
             Assert.Equal(exceptedValue, t2.Id);
         }
 
@@ -84,20 +84,20 @@ namespace LeetCodeSolutions.Tests.DataStructure
             test.AddLast(array[0]);
             test.AddLast(array[1]);
             test.AddLast(array[2]);
-            Assert.Equal(exceptedBool, test.Contain(array[0]));
+            Assert.Equal(exceptedBool, test.Contains(array[0]));
             test.RemoveFirst();
             exceptedBool = false;
-			Assert.Equal(exceptedBool, test.Contain(array[0]));
+			Assert.Equal(exceptedBool, test.Contains(array[0]));
             exceptedBool = true;
-			Assert.Equal(exceptedBool, test.Contain(array[1]));
+			Assert.Equal(exceptedBool, test.Contains(array[1]));
             test.Remove(0);
             exceptedBool = false;
-            Assert.Equal(exceptedBool, test.Contain(array[1]));
+            Assert.Equal(exceptedBool, test.Contains(array[1]));
             exceptedBool = true;
-            Assert.Equal(exceptedBool, test.Contain(array[2]));
+            Assert.Equal(exceptedBool, test.Contains(array[2]));
             test.RemoveLast();
             exceptedBool = false;
-            Assert.Equal(exceptedBool, test.Contain(array[2]));
+            Assert.Equal(exceptedBool, test.Contains(array[2]));
         }
     }
 }

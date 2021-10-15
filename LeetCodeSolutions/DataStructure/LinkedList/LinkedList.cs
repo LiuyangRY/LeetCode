@@ -3,6 +3,10 @@ using System.Text;
 
 namespace LeetCodeSolutions.DataStructure
 {
+	/// <summary>
+	/// 链表
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public class LinkedList<T>
 	{
 		private ListNode<T> DummyHead { get; set; } = new();
@@ -141,6 +145,30 @@ namespace LeetCodeSolutions.DataStructure
 		}
 
 		/// <summary>
+		/// 从链表中删除指定元素
+		/// </summary>
+		/// <param name="element">指定元素</param>
+		public void RemoveElement(T element)
+		{
+			ListNode<T> prev = DummyHead;
+			while(prev.Next is not null)
+			{
+				if(prev.Next.Element.Equals(element))
+				{
+					break;
+				}
+				prev = prev.Next;
+			}
+			if(prev.Next is not null)
+			{
+				ListNode<T> delNode = prev.Next;
+				prev.Next = delNode.Next;
+				delNode.Next = null;
+				Size--;
+			}
+		}
+
+		/// <summary>
 		/// 删除第一个元素
 		/// </summary>
 		/// <returns>第一个元素</returns>
@@ -182,7 +210,7 @@ namespace LeetCodeSolutions.DataStructure
 		/// </summary>
 		/// <param name="e">指定元素</param>
 		/// <returns>包含元素返回true，否则返回false</returns>
-		public bool Contain(T e)
+		public bool Contains(T e)
 		{
 			ListNode<T> cur = DummyHead.Next;
 			while(cur is not null)

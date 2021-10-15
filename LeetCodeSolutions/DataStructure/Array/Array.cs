@@ -3,6 +3,10 @@ using System.Text;
 
 namespace LeetCodeSolutions.DataStructure
 {
+	/// <summary>
+	/// 泛型数组
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public class Array<T>
 	{
 		public Array() : this(10)

@@ -2,6 +2,10 @@ using LeetCodeSolutions.DataStructure.Interface;
 
 namespace LeetCodeSolutions.DataStructure
 {
+	/// <summary>
+	/// 基于链表结构的栈
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public class LinkedListStack<T> : IStack<T>
 	{
 		private LinkedList<T> list = new();

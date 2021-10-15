@@ -3,6 +3,10 @@ using System.Text;
 
 namespace LeetCodeSolutions.DataStructure
 {
+	/// <summary>
+	/// 基于数组结构的栈
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public class ArrayStack<T> : IStack<T>
 	{
 		private Array<T> array;

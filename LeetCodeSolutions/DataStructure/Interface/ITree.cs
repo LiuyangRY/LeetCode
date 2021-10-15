@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace LeetCodeSolutions.DataStructure.Interface
 {
+	/// <summary>
+	/// 树接口
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public interface ITree<T> where T : IComparable<T>
 	{
 		void Add(T element);

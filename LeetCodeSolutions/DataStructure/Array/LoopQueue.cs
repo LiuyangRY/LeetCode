@@ -3,6 +3,10 @@ using System.Text;
 
 namespace LeetCodeSolutions.DataStructure
 {
+	/// <summary>
+	/// 循环队列
+	/// </summary>
+	/// <typeparam name="T">泛型类型</typeparam>
 	public class LoopQueue<T> : IQueue<T>
 	{
 		private T[] data;
