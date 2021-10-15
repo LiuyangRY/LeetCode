@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using LeetCodeSolutions.DataStructure.Interface;
 
 namespace LeetCodeSolutions.DataStructure
 {
@@ -8,7 +9,7 @@ namespace LeetCodeSolutions.DataStructure
 	/// 二分搜索树
 	/// </summary>
 	/// <typeparam name="T">泛型类型</typeparam>
-	public class BinarySearchTree<T> where T : IComparable<T>
+	public class BinarySearchTree<T> : ITree<T> where T : IComparable<T>
 	{
 		/// <summary>
 		/// 二分搜索树根节点
