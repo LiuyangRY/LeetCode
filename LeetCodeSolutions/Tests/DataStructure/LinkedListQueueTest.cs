@@ -36,7 +36,6 @@ namespace LeetCodeSolutions.Tests.DataStructure
 			test.EnQueue(t2);
 			Assert.Equal(t1.Id, test.GetFront().Id);
 			Assert.Equal(t1.TestName, test.GetFront().TestName);
-	
 		}
 
 		[Fact]
