@@ -258,6 +258,17 @@ namespace LeetCodeSolutions.DataStructure
 			return sb.ToString();
 		}
 
+		public void Swap(int i, int j)
+		{
+			if(i < 0 || i >= size || j < 0 || j >= size)
+			{
+				throw new ArgumentException("Index is illegal.");
+			}
+			T item = data[i];
+			data[i] = data[j];
+			data[j] = item;
+		}
+
 		private T[] data;
 
 		private int size;
