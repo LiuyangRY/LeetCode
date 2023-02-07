@@ -20,7 +20,9 @@ jobs:
     - name: Change work space 
       run: cd LeetCodeSolutions/
     - name: Restore dependencies
-      run: dotnet restore
+      run: |
+        ls
+        dotnet restore
     - name: Build
       run: dotnet build --no-restore
     - name: Test
