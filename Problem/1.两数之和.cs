@@ -7,20 +7,16 @@
 // @lc code=start
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        Dictionary<int, int> hashMap = new Dictionary<int, int>();
+        var dic = new Dictionary<int, int>(nums.Count);
         for (int i = 0; i < nums.Length; i++)
         {
             var dif = target - nums[i];
-            if(!hashMap.ContainsKey(dif))
-            {
-                hashMap.Add(nums[i], i);
-            }
+            if(!dic.TryGetValue(dif, out var index))
+                dic[nums[i]] = i;
             else
-            {
-                return new int[2] { hashMap[dif], i };
-            }
+                return new int[2] { index, i };
         }
-        return new int[2] { 0, 0 };
+        return null;
     }
 }
 // @lc code=end

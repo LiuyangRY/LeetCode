@@ -3,7 +3,7 @@ using LeetCodeSolutions.Common.Sort;
 
 namespace LeetCodeSolutions.Solutions.ArrayProblems
 {
-    public class TheCLosestThreeNumSum
+    public class TheClosestThreeNumSumSolution
     {
         public int ThreeSumClosest(int[] nums, int target) {
             if(nums == null)

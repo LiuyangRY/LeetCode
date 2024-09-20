@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/LeetCodeSolutions/Solutions/bin/Debug/net5.0/Solutions.dll",
+            "program": "${workspaceFolder}/LeetCodeSolutions/Solutions/bin/Debug/net8.0/Solutions.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

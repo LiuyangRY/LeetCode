@@ -1,5 +1,7 @@
-﻿using LeetCodeSolutions.DataStructure;
+﻿using LeetCodeSolutions.Common.Statistic;
+using LeetCodeSolutions.DataStructure;
 using LeetCodeSolutions.DataStructure.Interface;
+using LeetCodeSolutions.Solutions.ArrayProblems;
 using System;
 
 namespace LeetCodeSolutions
@@ -8,31 +10,15 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            int opCount = 10000;
-
-            ArrayQueue<int> arrayQueue = new();
-            double time1 = TestQueue(arrayQueue, opCount);
-            System.Console.WriteLine($"ArrayQueue, ticks: {time1}");
-
-            LoopQueue<int> loopQueue = new();
-            double time2 = TestQueue(loopQueue, opCount);
-            System.Console.WriteLine($"LoopQueue, ticks: {time2}");
-        }
-
-        static double TestQueue(IQueue<int> queue, int opCount)
-        {
-            Random random = new();
-            long startTime = DateTime.Now.Ticks;
-            for(int i = 0; i < opCount; i++)
+           var action = () =>
             {
-                queue.EnQueue(random.Next(int.MaxValue));
-            }
-            for(int i = 0; i < opCount; i++)
-            {
-                queue.DeQueue();
-            }
-            long endTime = DateTime.Now.Ticks;
-            return endTime - startTime;
+                var nums = new int[] { 1, 2, 3, 4, 5 };
+                var target = 7;
+                var algorithm = new TwoNumberAddSolution();
+                var result = algorithm.TwoSum(nums, target);
+                Console.WriteLine($"{result[0]},{result[1]}");
+            };
+            Statistics.Performance("两数相加测试", action);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace LeetCodeSolutions.Solutions.ArrayProblems
 {
-    public class FindMiddleNumberInTowOrderedArraysSoultion
+    public class FindMiddleNumberInTowOrderedArraysSolution
     {
         public double FindMedianSortedArrays(int[] nums1, int[] nums2) 
         {
