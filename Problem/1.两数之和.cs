@@ -7,14 +7,13 @@
 // @lc code=start
 public class Solution {
     public int[] TwoSum(int[] nums, int target) {
-        var dic = new Dictionary<int, int>(nums.Count);
+        var dic = new Dictionary<int, int>();
         for (int i = 0; i < nums.Length; i++)
         {
-            var dif = target - nums[i];
-            if(!dic.TryGetValue(dif, out var index))
+            if(!dic.TryGetValue(target - nums[i], out var index))
                 dic[nums[i]] = i;
             else
-                return new int[2] { index, i };
+                return [index, i];
         }
         return null;
     }
