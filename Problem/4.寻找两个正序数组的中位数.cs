@@ -7,54 +7,72 @@
 // @lc code=start
 public class Solution {
     public double FindMedianSortedArrays(int[] nums1, int[] nums2) {
-        int firstIndex = 0, secondIndex = 0;
         int totalLength = nums1.Length + nums2.Length;
-
-        if(totalLength < 2)
+        if (totalLength == 0)
         {
-            if(nums1.Length > 0)
+            return 0;
+        }
+        bool isEven = (totalLength & 1) == 0;
+        int midIndex = totalLength / 2;
+        if (totalLength == nums1.Length || totalLength == nums2.Length)
+        {
+            if (nums1.Length == 0)
             {
-                return nums1[0];
+                if (isEven)
+                {
+                    return (nums2[midIndex] + nums2[midIndex - 1]) * 0.5d;
+                }
+                else
+                {
+                    return nums2[midIndex];
+                }
             }
-            else
+            if (nums2.Length == 0)
             {
-                return nums2[0];
+                if (isEven)
+                {
+                    return (nums1[midIndex] + nums1[midIndex - 1]) * 0.5d;
+                }
+                return nums1[midIndex];
             }
         }
-
-        bool isEven = (totalLength & 1).Equals(0);
-        int midIndex = totalLength / 2;
-
-        Stack<int> stack = new Stack<int>();
-
+        if (totalLength == 2)
+        {
+            return (nums1[0] + nums2[0]) * 0.5d;
+        }
+        int firstIndex = 0, secondIndex = 0, currentValue = 0, lastValue = 0;
         for (int i = 0; i < totalLength; i++)
         {
-            if(firstIndex >= nums1.Length)
+            lastValue = currentValue;
+            if (firstIndex >= nums1.Length)
             {
-                stack.Push(nums2[secondIndex++]);
+                currentValue = nums2[secondIndex++];
             }
-            else if(secondIndex >= nums2.Length)
+            else if (secondIndex >= nums2.Length)
             {
-                stack.Push(nums1[firstIndex++]);
+                currentValue = nums1[firstIndex++];
             }
-            else if(nums1[firstIndex] <= nums2[secondIndex])
+            else if (nums1[firstIndex] <= nums2[secondIndex])
             {
-                stack.Push(nums1[firstIndex++]);
+                currentValue = nums1[firstIndex++];
             }
             else
             {
-                stack.Push(nums2[secondIndex++]);
+                currentValue = nums2[secondIndex++];
             }
             if(midIndex.Equals(i))
             {
-                break;
+                if (isEven)
+                {
+                    return (lastValue + currentValue) * 0.5d;
+                }
+                else
+                {
+                    return currentValue;
+                }
             }
         }
-        if(isEven)
-        {
-            return (stack.Pop() + stack.Pop()) / 2.0;
-        }
-        return stack.Pop();
+        return 0; 
     }
 }
 // @lc code=end

@@ -6,7 +6,7 @@ namespace LeetCodeSolutions
     {
         static void Main(string[] args)
         {
-            new TwoNumberAddSolution().Test();
+            new FindMiddleNumberInTowOrderedArraysSolution().Test();
         }
     }
 }

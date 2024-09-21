@@ -1,59 +1,91 @@
 using System.Collections.Generic;
+using LeetCodeSolutions.Common.Statistic;
 
 namespace LeetCodeSolutions.Solutions.ArrayProblems
 {
     public class FindMiddleNumberInTowOrderedArraysSolution
     {
-        public double FindMedianSortedArrays(int[] nums1, int[] nums2) 
+        public double FindMedianBetweenTwoSortedArrays(int[] nums1, int[] nums2) 
         {
-            int firstIndex = 0, secondIndex = 0;
             int totalLength = nums1.Length + nums2.Length;
-
-            if(totalLength < 2)
+            if (totalLength == 0)
             {
-                if(nums1.Length > 0)
+                return 0;
+            }
+            bool isEven = (totalLength & 1) == 0;
+            int midIndex = totalLength / 2;
+            if (totalLength == nums1.Length || totalLength == nums2.Length)
+            {
+                if (nums1.Length == 0)
                 {
-                    return nums1[0];
+                    if (isEven)
+                    {
+                        return (nums2[midIndex] + nums2[midIndex - 1]) / 2d;
+                    }
+                    else
+                    {
+                        return nums2[midIndex];
+                    }
                 }
-                else
+                if (nums2.Length == 0)
                 {
-                    return nums2[0];
+                    if (isEven)
+                    {
+                        return (nums1[midIndex] + nums1[midIndex - 1]) / 2d;
+                    }
+                    return nums1[midIndex];
                 }
             }
-
-            bool isEven = (totalLength & 1).Equals(0);
-            int midIndex = totalLength / 2;
-
-            Stack<int> stack = new Stack<int>();
-
+            
+            if (totalLength == 2)
+            {
+                return (nums1[0] + nums2[0]) / 2d;
+            }
+            int firstIndex = 0, secondIndex = 0, currentValue = 0, lastValue = 0;
             for (int i = 0; i < totalLength; i++)
             {
-                if(firstIndex >= nums1.Length)
+                lastValue = currentValue;
+                if (firstIndex >= nums1.Length)
                 {
-                    stack.Push(nums2[secondIndex++]);
+                    currentValue = nums2[secondIndex++];
                 }
-                else if(secondIndex >= nums2.Length)
+                else if (secondIndex >= nums2.Length)
                 {
-                    stack.Push(nums1[firstIndex++]);
+                    currentValue = nums1[firstIndex++];
                 }
-                else if(nums1[firstIndex] <= nums2[secondIndex])
+                else if (nums1[firstIndex] <= nums2[secondIndex])
                 {
-                    stack.Push(nums1[firstIndex++]);
+                    currentValue = nums1[firstIndex++];
                 }
                 else
                 {
-                    stack.Push(nums2[secondIndex++]);
+                    currentValue = nums2[secondIndex++];
                 }
                 if(midIndex.Equals(i))
                 {
-                    break;
+                    if (isEven)
+                    {
+                        return (lastValue + currentValue) / 2d;
+                    }
+                    else
+                    {
+                        return currentValue;
+                    }
                 }
             }
-            if(isEven)
+            return 0; 
+        }
+        
+        public void Test()
+        {
+            var action = () =>
             {
-                return (stack.Pop() + stack.Pop()) / 2.0;
-            }
-            return stack.Pop();
+                var nums1 = new int[] { 1, 3 };
+                var nums2 = new int[] { 2, 4 };
+                var result = FindMedianBetweenTwoSortedArrays(nums1, nums2);
+                System.Console.WriteLine($"中位数：{result}");
+            };
+            Statistics.Performance("寻找两个有序数组中位数测试", action);
         }
     }
 }
